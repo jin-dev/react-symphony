@@ -1,5 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { Fragment, useEffect } from 'react'
 import './App.css'
+import styled from 'styled-components'
+
+const StyledButton = styled.button`
+    width: 120px;
+`
 
 function App(): React.JSX.Element {
     async function fetchData() {
@@ -20,7 +25,12 @@ function App(): React.JSX.Element {
         fetchData()
     }, [])
 
-    return <div>haha1221</div>
+    return (
+        <>
+            <StyledButton />
+            <div>haha1221</div>
+        </>
+    )
 }
 
 export default App
