@@ -1,6 +1,15 @@
-import React, { Fragment, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import './App.css'
 import styled from 'styled-components'
+
+const StyledSection = styled.section`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`
 
 const StyledButton = styled.button`
     width: 120px;
@@ -26,10 +35,10 @@ function App(): React.JSX.Element {
     }, [])
 
     return (
-        <>
+        <StyledSection>
             <StyledButton />
             <div>haha1221</div>
-        </>
+        </StyledSection>
     )
 }
 
