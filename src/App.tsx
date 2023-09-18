@@ -3,16 +3,24 @@ import './App.css'
 
 function App(): React.JSX.Element {
     async function fetchData() {
-        await fetch('/api/links.json').then((res) => {
-            console.log('the result : ', res.json())
-        })
+        try {
+            const response = await fetch('/api/links.json')
+
+            if (!response.ok) {
+                throw new Error('got error haha')
+            }
+            const data = await response.json()
+            console.log('the data is : ', data)
+        } catch (e) {
+            console.error('Error is : ', e)
+        }
     }
 
     useEffect(() => {
         fetchData()
     }, [])
 
-    return <div>haha</div>
+    return <div>haha1221</div>
 }
 
 export default App
