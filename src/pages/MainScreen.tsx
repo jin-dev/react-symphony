@@ -1,13 +1,10 @@
 import React, { useEffect } from 'react'
-import './App.css'
 import styled from 'styled-components'
 //import { useStore  } from './components/zustand/dataStore'
-import { useStore } from './components/zustand/jsonStore'
-import  Logo  from './assets/file_sharing.png';
+import { useStore } from '../components/zustand/jsonStore'
+import  Logo  from '.././assets/file_sharing.png';
 import { BsGithub, BsLinkedin } from "react-icons/bs";
-import { Route, Routes} from 'react-router-dom';
-import MainScreen from './pages/MainScreen';
-import DetailScreen from './pages/DetailScreen';
+
 const StyledSection = styled.section`
     margin: 50px;
     width: 100%;
@@ -43,7 +40,7 @@ const StyledPart = styled.div`
 `
 
 
-function App(): React.JSX.Element {
+const MainScreen = () => {
 
   //  const sampleData = useStore((state) => state.data);
     const setData = useStore((state) => state.setData);
@@ -68,7 +65,6 @@ function App(): React.JSX.Element {
         fetchData()
     }, [])
 
-/*
     return (
         <StyledSection>
             <StyledHeader>
@@ -83,16 +79,9 @@ function App(): React.JSX.Element {
      
 
         </StyledSection>
-    ) */
+    ) 
 
-    return (
-        <Routes>
-            <Route path='/' element={<MainScreen/>}>
-               
-            </Route>
-            <Route path='/detail' element={<DetailScreen/>} />
-        </Routes>
-    )
+   
 }
 
-export default App
+export default MainScreen
