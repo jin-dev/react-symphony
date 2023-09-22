@@ -1,11 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-//import { useStore  } from './components/zustand/dataStore'
 import { useStore } from '../components/zustand/jsonStore'
 import  Logo  from '.././assets/file_sharing.png';
 import { BsGithub, BsLinkedin } from "react-icons/bs";
-import { Link } from 'react-router-dom';
-
+import { CustomizedTable } from '../components/CustomizedTable';
+import { convertFileSize, expirationTime  } from '../components/utility/calculator';
 const StyledSection = styled.section`
     margin: 50px;
     width: 100%;
@@ -26,15 +25,15 @@ const StyledSubSection = styled.section`
     width: 100%;
     height: 100%;
     display:flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     background-color: rgb(31, 41, 55);
 
 `
 const StyledPart = styled.div`
-    width: 30%;
-    height: 100%;
+    width: 70%;
+    height: 30%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -42,28 +41,27 @@ const StyledPart = styled.div`
 `
 const StyledPart2 = styled.div`
     width: 70%;
-    height: 100%;
+    height: 70%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 `
-
-const StyledList = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-`
-
+interface FilteredItems { 
+    subject: string;
+    key: string;
+    count: number;
+    size: number;
+    expires_at : number;
+}
 
 const MainScreen = () => {
 
   //  const sampleData = useStore((state) => state.data);
     const setData = useStore((state) => state.setData);
     const jsonData = useStore((state) => state.data);
-    
+    const [filtered, setFiltered] = useState<FilteredItems[]>([]);
+
     async function fetchData() {
         //console.log("activated API call");
         try {
@@ -73,7 +71,21 @@ const MainScreen = () => {
             }
             const data = await response.json()
             setData(data);
+
+
+            const filteredArray: FilteredItems[] = data.map((item : any) => ({
+                subject: item.sent.subject,
+                key: item.key,
+                count: item.count,
+                size: convertFileSize(item.size),
+                expires_at: expirationTime(item.expires_at),
+            }));
+
+            setFiltered(filteredArray);
+
             console.log('the data is : ', data)
+
+            console.log("The filtered : ,", filteredArray);
         } catch (e) {
             console.error('Error is : ', e)
         }
@@ -85,39 +97,20 @@ const MainScreen = () => {
 
     return (
         <StyledSection>
+        
             <StyledHeader>
-                <h1> Nespresso</h1>
+                <h1>Main</h1>
                 <BsGithub/>
                 <BsLinkedin/>
             </StyledHeader>
             <StyledSubSection>
-                <StyledPart><img src={Logo} style={{width:'100%'}} alt="keyVisual"/></StyledPart>
+                <StyledPart><img src={Logo} style={{width:'30%'}} alt="keyVisual"/></StyledPart>
                 <StyledPart2>
-                    <StyledList>
-                        <div>Subject</div>
-                        <div>Number of Files</div>
-                        <div>Size</div>
-                        <div>Validity Period</div>
-                        <div>Recipients</div>
-                    </StyledList>
-                    <div>
-                        <div>{jsonData[0]?.thumbnailUrl}</div>
-                        <div><Link to={`/detail/${jsonData[0]?.key}`}>{jsonData[0]?.key}</Link></div>
-                        <div>{jsonData[0]?.download_count}</div>
-
-                        {jsonData[0]?.created_at}
-                    </div>
-                    <div>
-                        <div>{jsonData[1]?.thumbnailUrl}</div>
-                        <div>{jsonData[1]?.summary}</div>
-                        <div>{jsonData[1]?.download_count}</div>
-
-                        {jsonData[1]?.created_at}
-                    </div>
+                <CustomizedTable tableData = {filtered}/>
                 </StyledPart2>
             </StyledSubSection>
-     
-
+       
+      
         </StyledSection>
     ) 
 
