@@ -90,7 +90,7 @@ function App(): React.JSX.Element {
             <Route path='/' element={<MainScreen/>}>
                
             </Route>
-            <Route path='/detail' element={<DetailScreen/>} />
+            <Route path='/detail/:id' element={<DetailScreen/>} />
         </Routes>
     )
 }
