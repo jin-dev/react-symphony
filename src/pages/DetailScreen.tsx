@@ -1,14 +1,14 @@
 import { useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
-import { useStore } from '../components/zustand/jsonStore';
-import { convertFileSize } from '../components/utility/calculator';
+import { useStore } from '@components/zustand/jsonStore';
+import { convertFileSize } from '@components/utility/calculator';
 import { BsDownload } from 'react-icons/bs';
-import { DataItem, FileItem } from '../type/types';
+import { DataItem, FileItem } from '@type/types';
 import { StyledSection, StyledHeader, StyledColumntitle,
   StyledSubSection2, StyledSubSection2_1, StyledSubSection2_btn,
   StyledSubSection3, StyledSubSection3_1, StyledSubSection3_2,StyledSubSection4,
   StyledSubSection4_a, StyledSubSection5, StyledSubSection5_1,
-  UnderLineText, MainHeader, StyledSubSection  } from '../components/styles/StyledComponentsDetail';
+  UnderLineText, MainHeader, StyledSubSection  } from '@components/styles/StyledComponentsDetail';
 
 const DetailScreen = () => {
   const {id } = useParams();

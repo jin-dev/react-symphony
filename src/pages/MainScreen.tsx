@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useStore } from '../components/zustand/jsonStore';
-import { CustomizedTable } from '../components/CustomizedTable';
-import { convertFileSize, expirationTime } from '../components/utility/calculator';
-import {StyledSection, StyledHeader, StyledSubSection, StyledPart2, StyledSubTitle } from '../components/styles/StyledComponents';
-import { FilteredItems, JsonData } from '../type/types';
+import { useStore } from '@components/zustand/jsonStore';
+import { CustomizedTable } from '@components/CustomizedTable';
+import { convertFileSize, expirationTime } from '@components/utility/calculator';
+import {StyledSection, StyledHeader, StyledSubSection, StyledPart2, StyledSubTitle } from '@components/styles/StyledComponents';
+import { FilteredItems, JsonData } from '@type/types';
 
 const MainScreen = () => {
   const setData = useStore((state) => state.setData);

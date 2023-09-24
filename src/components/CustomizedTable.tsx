@@ -3,8 +3,8 @@ import { Column, useTable } from 'react-table';
 import { Link } from 'react-router-dom';
 import { BsFillFileTextFill } from 'react-icons/bs';
 import { AiOutlineTrademarkCircle } from 'react-icons/ai';
-import { TableObject } from '../type/types';
-import { CustomHeader, StyledTable, StyledRow, StyledSubRow  } from '../components/styles/StyledComponents';
+import { TableObject } from '@type/types';
+import { CustomHeader, StyledTable, StyledRow, StyledSubRow  } from '@components/styles/StyledComponents';
 
 interface CustomizedTableProps {
   tableData: TableObject[];
