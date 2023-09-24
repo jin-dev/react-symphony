@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useStore } from '../components/zustand/jsonStore'
 import  Logo  from '.././assets/file_sharing.png';
+
 import { CustomizedTable } from '../components/CustomizedTable';
 import { convertFileSize, expirationTime  } from '../components/utility/calculator';
 const StyledSection = styled.section`
@@ -19,27 +20,25 @@ const StyledHeader = styled.div`
     display:flex;
     justify-content: center;
 `
+const StyledSubTitle = styled.div`
+    display:flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width:100%;
+    font-size:22px;
+    font-weight: 600;
+`
 
 const StyledSubSection = styled.section`
-    width: 100%;
+    width: 90%;
     height: 100%;
     display:flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: rgb(31, 41, 55);
-
-`
-const StyledPart = styled.div`
-    width: 70%;
-    height: 30%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 `
 const StyledPart2 = styled.div`
-    width: 70%;
+    width: 100%;
     height: 70%;
     display: flex;
     flex-direction: column;
@@ -103,8 +102,8 @@ const MainScreen = () => {
                 <h1>Part. I</h1>
             </StyledHeader>
             <StyledSubSection>
-                <StyledPart><img src={Logo} style={{width:'30%'}} alt="keyVisual"/></StyledPart>
                 <StyledPart2>
+                <StyledSubTitle>My Links</StyledSubTitle>
                 <CustomizedTable tableData = {filtered}/>
                 </StyledPart2>
             </StyledSubSection>

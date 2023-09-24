@@ -35,13 +35,20 @@ const StyledTable = styled.table`
     border-bottom: 1px solid #ddd;
   }
 `;
+const CustomHeader = styled.th`
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: none !important;
 
+`;
 
 export const CustomizedTable = ({ tableData} :{ tableData:DataObject[]}) => {
     const columns: Column[] = React.useMemo(
       () => [
         {
-          Header: "Subject",
+          Header: () => (
+            <CustomHeader>Subject</CustomHeader>
+          ),
           accessor: "key", 
           Cell: ({ row }) => (
             <StyledRow>
@@ -51,7 +58,7 @@ export const CustomizedTable = ({ tableData} :{ tableData:DataObject[]}) => {
             <Link to={`/detail/${row.original?.key}`}>{row.original?.key}</Link>
             </StyledSubRow>
             </StyledRow>
-          ),
+          )
         },
         {
           Header: "Number of Files",
