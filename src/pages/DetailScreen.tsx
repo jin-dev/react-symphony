@@ -15,8 +15,15 @@ const StyledSection = styled.section`
 `
 const StyledHeader = styled.div`
     width: 100%;
+    padding-top:50px;
     display:flex;
     justify-content: center;
+`
+const StyledColumntitle = styled.div`
+  font-size:16px;
+  font-weight:600;
+  color:lightgray;
+  opacity: 0.8;
 `
 
 const StyledSubSection2 = styled.div`
@@ -55,8 +62,20 @@ const StyledSubSection3_1 = styled.div`
     display: flex;
     width:50%;
     flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding:10px;
+   
+    width: 100%;
+`
+
+const StyledSubSection3_2 = styled.div`
+    display: flex;
+    width:50%;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding:10px;
    
     width: 100%;
 `
@@ -102,7 +121,7 @@ const MainHeader = styled.h1`
 `
 
 const StyledSubSection = styled.section`
-    width: 100%;
+    width: 80%;
     height: 100%;
     display:flex;
     flex-direction: column;
@@ -144,21 +163,21 @@ const DetailScreen = () => {
         <StyledSubSection3>
           <StyledSubSection3_1>
           <div>
-            <div>Link Creation Date</div>
+            <StyledColumntitle>Link Creation Date</StyledColumntitle>
             <div>{new Date(filteredData[0].created_at * 1000).toLocaleDateString()}</div>
           </div>
           <div>
-            <div>Content</div>
+            <StyledColumntitle>Content</StyledColumntitle>
             <div>{filteredData[0].sent.content}</div>
           </div>
           <div>
-            <div>Download Count</div>
+            <StyledColumntitle>Download Count</StyledColumntitle>
             <div>{filteredData[0].download_count}</div>
           </div>
           </StyledSubSection3_1>
-        <StyledSubSection3_1>
-          <img style={{width:'50%',backgroundColor:'#dedcd9', padding:'5px 15px'}} src={filteredData[0].thumbnailUrl} alt='thumbnail'/>
-        </StyledSubSection3_1>
+        <StyledSubSection3_2>
+          <img style={{width:'50%', height:'90%',backgroundColor:'#dedcd9', padding:'5px 15px'}} src={filteredData[0].thumbnailUrl} alt='thumbnail'/>
+        </StyledSubSection3_2>
         </StyledSubSection3>
 
         <StyledSubSection4>
@@ -169,7 +188,7 @@ const DetailScreen = () => {
         </StyledSubSection4>
         <StyledSubSection5>
           <StyledSubSection5_1>
-          <img style={{width: '20%', paddingRight:'15px'}} src={fileData[0]?.thumbnailUrl} />
+          <img style={{width: '10%', height: '10%', paddingRight:'15px'}} src={fileData[0]?.thumbnailUrl} />
           <div>{fileData[0]?.name}</div>
           </StyledSubSection5_1>
           <div>{convertFileSize(fileData[0]?.size)}</div>
