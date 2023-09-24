@@ -11,6 +11,7 @@ function App(): React.JSX.Element {
         <Routes>
             <Route path='/' element={<MainScreen/>} />
             <Route path='/detail/:id' element={<DetailScreen/>} />
+            <Route path="*" element={<MainScreen />}/>
         </Routes>
     )
 }
