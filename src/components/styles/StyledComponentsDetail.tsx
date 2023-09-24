@@ -1,13 +1,15 @@
 import styled from "styled-components";
 
 export const StyledSection = styled.section`
-    margin: 50px;
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;    
+    @media (min-width: 768px) {
+        margin: 50px; 
+    }
 `
 export const StyledHeader = styled.div`
     width: 100%;

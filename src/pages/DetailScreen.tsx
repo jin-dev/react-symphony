@@ -13,14 +13,18 @@ import { StyledSection, StyledHeader, StyledColumntitle,
 const DetailScreen = () => {
   const {id } = useParams();
   const jsonData = useStore((state) => state.data);
+
+  //Filter data based on the 'id' parameter from URL
   const filteredData: DataItem[] = jsonData.filter((item) => item.key === id); 
   const navigate = useNavigate();
   const fileData: FileItem[] = filteredData[0]?.files || [];
 
   useEffect(() => {
+    //Rediret to main page if there is no data for the given ID
     if (filteredData.length ===0) navigate('/');
   }, [])
 
+  // Render the detail page if there is filtered data, otherwise it renders nothing.
   return (
     filteredData.length > 0 ? <StyledSection>
        <StyledHeader>

@@ -6,9 +6,12 @@ import {StyledSection, StyledHeader, StyledSubSection, StyledPart2, StyledSubTit
 import { FilteredItems, JsonData } from '@type/types';
 
 const MainScreen = () => {
+
+  //Zustand 'useStore' hook to set data
   const setData = useStore((state) => state.setData);
   const [filtered, setFiltered] = useState<FilteredItems[]>([]);
 
+  //get API data
   async function fetchData() {
     try {
       const response = await fetch('/api/links.json');
@@ -16,8 +19,11 @@ const MainScreen = () => {
         throw new Error('There is an error');
       }
       const data = await response.json();
+
+      //set data for global state management
       setData(data);
 
+      //Map and convert the received data for display
       const filteredArray: FilteredItems[] = data.map((item: JsonData) => ({
         subject: item.sent.subject,
         key: item.key,
@@ -27,16 +33,19 @@ const MainScreen = () => {
         recipients: item.sent?.emails?.length || 0
       }));
 
+      //Set the filtered Data
       setFiltered(filteredArray);
     } catch (e) {
       console.error('Error:', e);
     }
   }
 
+  //Fetch data when the component mounts
   useEffect(() => {
     fetchData();
   }, []);
 
+    //renders received data with table component
   return (
     <StyledSection>
       <StyledHeader>

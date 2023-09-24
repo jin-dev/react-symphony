@@ -8,6 +8,7 @@ import DetailScreen from './pages/DetailScreen';
 
 function App(): React.JSX.Element {
     return (
+        //react routing
         <Routes>
             <Route path='/' element={<MainScreen/>} />
             <Route path='/detail/:id' element={<DetailScreen/>} />

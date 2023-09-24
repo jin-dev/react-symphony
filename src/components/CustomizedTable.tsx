@@ -6,6 +6,7 @@ import { AiOutlineTrademarkCircle } from 'react-icons/ai';
 import { TableObject } from '@type/types';
 import { CustomHeader, StyledTable, StyledRow, StyledSubRow  } from '@components/styles/StyledComponents';
 
+//define props for the table component
 interface CustomizedTableProps {
   tableData: TableObject[];
 }
@@ -16,6 +17,7 @@ export const CustomizedTable: React.FC<CustomizedTableProps> = ({ tableData }) =
       {
         Header: () => <CustomHeader>Subject</CustomHeader>,
         accessor: 'key',
+        //define how data in the 'subject' column should be rendered
         Cell: ({ row }) => (
           <StyledRow>
             <BsFillFileTextFill />
@@ -43,6 +45,7 @@ export const CustomizedTable: React.FC<CustomizedTableProps> = ({ tableData }) =
       {
         Header: 'Recipients',
         accessor: 'recipients',
+         //render the 'recipients' column with icon
         Cell: ({ row }) =>
           row.original?.recipients > 0 ? (
             <AiOutlineTrademarkCircle />
@@ -60,6 +63,7 @@ export const CustomizedTable: React.FC<CustomizedTableProps> = ({ tableData }) =
     prepareRow,
   } = useTable({ columns, data: tableData });
 
+  //draw table based on received data
   return (
     <StyledTable {...getTableProps}>
       <thead>
