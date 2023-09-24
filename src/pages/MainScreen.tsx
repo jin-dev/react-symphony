@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useStore } from '../components/zustand/jsonStore'
 import  Logo  from '.././assets/file_sharing.png';
-import { BsGithub, BsLinkedin } from "react-icons/bs";
 import { CustomizedTable } from '../components/CustomizedTable';
 import { convertFileSize, expirationTime  } from '../components/utility/calculator';
 const StyledSection = styled.section`
@@ -53,6 +52,7 @@ interface FilteredItems {
     count: number;
     size: number;
     expires_at : number;
+    recipients : number;
 }
 
 const MainScreen = () => {
@@ -79,6 +79,7 @@ const MainScreen = () => {
                 count: item.count,
                 size: convertFileSize(item.size),
                 expires_at: expirationTime(item.expires_at),
+                recipients: item.sent?.emails?.length
             }));
 
             setFiltered(filteredArray);
@@ -99,9 +100,7 @@ const MainScreen = () => {
         <StyledSection>
         
             <StyledHeader>
-                <h1>Main</h1>
-                <BsGithub/>
-                <BsLinkedin/>
+                <h1>Part. I</h1>
             </StyledHeader>
             <StyledSubSection>
                 <StyledPart><img src={Logo} style={{width:'30%'}} alt="keyVisual"/></StyledPart>

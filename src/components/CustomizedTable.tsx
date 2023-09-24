@@ -1,7 +1,9 @@
 import React from 'react';
 import { Column, useTable } from 'react-table';
 import { Link } from 'react-router-dom';
-
+import {BsFillFileTextFill } from 'react-icons/bs';
+import {AiOutlineTrademarkCircle } from 'react-icons/ai';
+import styled from 'styled-components';
 interface DataObject {
   count: number
   expires_at: string
@@ -9,6 +11,30 @@ interface DataObject {
   size: string
   subject: string
 }
+
+const StyledRow = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
+
+const StyledSubRow = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left:10px;
+  
+`
+const StyledTable = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+
+  th,
+  td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+`;
 
 
 export const CustomizedTable = ({ tableData} :{ tableData:DataObject[]}) => {
@@ -18,15 +44,17 @@ export const CustomizedTable = ({ tableData} :{ tableData:DataObject[]}) => {
           Header: "Subject",
           accessor: "key", 
           Cell: ({ row }) => (
+            <StyledRow>
+            <BsFillFileTextFill/>
+            <StyledSubRow>
+            <div>{row.original?.subject}</div>
             <Link to={`/detail/${row.original?.key}`}>{row.original?.key}</Link>
+            </StyledSubRow>
+            </StyledRow>
           ),
         },
         {
-          Header: "Subject",
-          accessor: "subject",
-        },
-        {
-          Header: "Count",
+          Header: "Number of Files",
           accessor: "count",
         },
         {
@@ -34,12 +62,20 @@ export const CustomizedTable = ({ tableData} :{ tableData:DataObject[]}) => {
           accessor: "size",
         },
         {
-          Header: "Expires At",
+          Header: "Validity Period",
           accessor: "expires_at",
+        },
+        {
+          Header: "Recipients",
+          accessor: "recipients",
+          Cell: ({ row }) =>
+            row.original?.recipients.length === 0 ? null : (
+              <AiOutlineTrademarkCircle />
+            ),
         },
       ],
       []
-    )
+    );
 
     const {
       getTableProps, //table props
@@ -51,7 +87,7 @@ export const CustomizedTable = ({ tableData} :{ tableData:DataObject[]}) => {
   
 
     return (
-      <table {...getTableProps}>
+      <StyledTable {...getTableProps}>
         <thead>
           {headerGroups.map((headerGroup) => (
             <tr {...headerGroup.getHeaderGroupProps()}>
@@ -73,6 +109,6 @@ export const CustomizedTable = ({ tableData} :{ tableData:DataObject[]}) => {
             );
           })}
         </tbody>
-      </table>
+      </StyledTable>
     )
   }

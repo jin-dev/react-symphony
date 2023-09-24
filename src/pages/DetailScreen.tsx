@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { useStore } from '../components/zustand/jsonStore';
 import styled from 'styled-components'
 import { convertFileSize } from '../components/utility/calculator';
+import { BsDownload } from 'react-icons/bs';
 const StyledSection = styled.section`
     margin: 50px;
     width: 100%;
@@ -137,7 +138,7 @@ const DetailScreen = () => {
         <MainHeader>{filteredData[0]?.sent.subject}</MainHeader>
         <UnderLineText>{filteredData[0].key}</UnderLineText>
         </StyledSubSection2_1>
-        <StyledSubSection2_btn onClick={() => alert('downloaded')}>Downlodad</StyledSubSection2_btn>
+        <StyledSubSection2_btn onClick={() => alert('downloaded')}> <BsDownload/> Downlodad</StyledSubSection2_btn>
         </StyledSubSection2>
 
         <StyledSubSection3>
