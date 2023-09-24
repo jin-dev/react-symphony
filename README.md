@@ -27,9 +27,9 @@ Before you begin, ensure you have met the following requirements:
 
 ## Sample[](#sample)
 
--   ![Sample](https://drive.google.com/uc?export=view&id=1In1nEfUs5-hUDpzkSlZEWoIzFGWdby8V)
+-   ![Sample](https://drive.google.com/uc?export=view&id=1RRRSRfd_LLu7flSC1R-mOVoHNhH8smdp)
 
--   ![Sample](https://drive.google.com/uc?export=view&id=1x6eVoUqQPnuGTIVjcGnISmKaTEczyowU)
+-   ![Sample](https://drive.google.com/uc?export=view&id=1LYrRDyxn0dPYmz7jnoJIsHWUSLIdfk10)
 
 ## Installation[](#installation)
 

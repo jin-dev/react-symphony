@@ -1,4 +1,6 @@
 
+
+//convert bytes to B to TB
 function convertFileSize(bytes: number) : string {
     if (bytes === 0) return '0 B'
 
@@ -11,6 +13,7 @@ function convertFileSize(bytes: number) : string {
 
 }
 
+//check expiration of given time
 function expirationTime(expires : number) : string {
     const expirationTime = expires * 1000;
 
