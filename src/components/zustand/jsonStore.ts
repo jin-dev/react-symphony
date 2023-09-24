@@ -1,23 +1,5 @@
 import { create } from "zustand";
-
-interface Sent {
-    subject: string;
-    content: string;
-    emails: string[];
-}
-
-interface DataItem {
-    created_at: number;
-    key: string;
-    expires_at: number;
-    download_count: number;
-    count: number;
-    size: number;
-    summary: string;
-    thumbnailUrl: string;
-    files: [];
-    sent: Sent;
-}
+import { DataItem } from "../../type/types";
 
 type Data = DataItem[];
 

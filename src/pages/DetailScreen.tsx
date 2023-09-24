@@ -1,149 +1,24 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 import { useStore } from '../components/zustand/jsonStore';
-import styled from 'styled-components'
 import { convertFileSize } from '../components/utility/calculator';
 import { BsDownload } from 'react-icons/bs';
-const StyledSection = styled.section`
-    margin: 50px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;    
-`
-const StyledHeader = styled.div`
-    width: 100%;
-    padding-top:50px;
-    display:flex;
-    justify-content: center;
-`
-const StyledColumntitle = styled.div`
-  font-size:16px;
-  font-weight:600;
-  color:lightgray;
-  opacity: 0.8;
-`
-
-const StyledSubSection2 = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;   
-    align-items: center;
-    width: 100%;
-    border-bottom: 1px solid lightslategray;
-    border-left:1px solid rgb(31, 41, 55);
-    border-right:1px solid rgb(31, 41, 55);
-`
-const StyledSubSection2_1 = styled.div`
-    display: flex;
-    flex-direction: column;
-    padding:10px;
-`
-
-const StyledSubSection2_btn = styled.button`
-background-color: #1fd190;
-width:120px;
-height:50px;
-border-radius: 10px;
-cursor: pointer;
-  
-`
-
-const StyledSubSection3 = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding:20px 0;
-    width: 100%;
-`
-const StyledSubSection3_1 = styled.div`
-    display: flex;
-    width:50%;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    padding:10px;
-   
-    width: 100%;
-`
-
-const StyledSubSection3_2 = styled.div`
-    display: flex;
-    width:50%;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding:10px;
-   
-    width: 100%;
-`
-
-const StyledSubSection4 = styled.div`
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height:40px;
-    border-top: 1px solid lightslategray;
-    border-bottom: 1px solid lightslategray;
-   
-`
-
-const StyledSubSection4_a = styled.div`
-   display: flex;
-   flex-direction: row;
-   justify-content: space-between;
-  width: 90%;
-`
-
-const StyledSubSection5 = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 0 10px 0;
-    width: 90%;
-`
-const StyledSubSection5_1 = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`
-const UnderLineText = styled.div`
-  text-decoration: underline;
-`
-
-const MainHeader = styled.h1`
-  font-size: 18px;
-  font-weight: 600;
-`
-
-const StyledSubSection = styled.section`
-    width: 80%;
-    height: 100%;
-    display:flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-top: 0;
-    border-right: 1px solid lightslategray;
-    border-bottom:1px solid lightslategray;
-    border-left:1px solid lightslategray;
-
-`
+import { DataItem, FileItem } from '../type/types';
+import { StyledSection, StyledHeader, StyledColumntitle,
+  StyledSubSection2, StyledSubSection2_1, StyledSubSection2_btn,
+  StyledSubSection3, StyledSubSection3_1, StyledSubSection3_2,StyledSubSection4,
+  StyledSubSection4_a, StyledSubSection5, StyledSubSection5_1,
+  UnderLineText, MainHeader, StyledSubSection  } from '../components/styles/StyledComponentsDetail';
 
 const DetailScreen = () => {
   const {id } = useParams();
   const jsonData = useStore((state) => state.data);
-  const filteredData = jsonData.filter((item) => item.key === id);
+  const filteredData: DataItem[] = jsonData.filter((item) => item.key === id); 
   const navigate = useNavigate();
-
-  const fileData = filteredData[0]?.files;
+  const fileData: FileItem[] = filteredData[0]?.files || [];
 
   useEffect(() => {
-    filteredData.length ===0 ? navigate('/') : null;
+    if (filteredData.length ===0) navigate('/');
   }, [])
 
   return (
@@ -182,8 +57,8 @@ const DetailScreen = () => {
 
         <StyledSubSection4>
           <StyledSubSection4_a>
-          <div>Total {filteredData[0].download_count} file</div>
-          <div> {convertFileSize(filteredData[0].size)}</div>
+          <StyledColumntitle>Total {filteredData[0].download_count} file</StyledColumntitle>
+          <StyledColumntitle> {convertFileSize(filteredData[0].size)}</StyledColumntitle>
           </StyledSubSection4_a>
         </StyledSubSection4>
         <StyledSubSection5>
@@ -191,7 +66,7 @@ const DetailScreen = () => {
           <img style={{width: '10%', height: '10%', paddingRight:'15px'}} src={fileData[0]?.thumbnailUrl} />
           <div>{fileData[0]?.name}</div>
           </StyledSubSection5_1>
-          <div>{convertFileSize(fileData[0]?.size)}</div>
+          <StyledColumntitle>{convertFileSize(fileData[0]?.size)}</StyledColumntitle>
         </StyledSubSection5>
       </StyledSubSection>
     </StyledSection>
