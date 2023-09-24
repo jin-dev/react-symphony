@@ -18,13 +18,21 @@ export const CustomizedTable: React.FC<CustomizedTableProps> = ({ tableData }) =
         Header: () => <CustomHeader>Subject</CustomHeader>,
         accessor: 'key',
         //define how data in the 'subject' column should be rendered
+        // copy function :copy the key value when title of the item is clicked
+        // navigate to detail page when URL is clicked 
         Cell: ({ row }) => (
           <StyledRow>
             <BsFillFileTextFill />
             <StyledSubRow>
-              <div>{row.original?.subject}</div>
+              <div onClick={async() => {
+                if (row.original?.key) {
+                  await navigator.clipboard.writeText('localhost/'+row.original.key);
+                  alert(`Copied the address of ${row?.original?.key}.`);
+                }
+              }}
+                style={{ cursor: 'pointer' }} >{row.original?.subject}</div>
               {row.original?.key ? (
-                <Link to={`/detail/${row.original.key}`}>{row.original.key}</Link>
+                <Link to={`/detail/${row.original.key}`}>localhost/{row.original.key}</Link>
               ) : null}
             </StyledSubRow>
           </StyledRow>

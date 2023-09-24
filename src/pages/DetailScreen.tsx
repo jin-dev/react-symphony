@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom';
 import { useStore } from '@components/zustand/jsonStore';
-import { convertFileSize } from '@components/utility/calculator';
+import { convertFileSize, expirationTime } from '@components/utility/calculator';
 import { BsDownload } from 'react-icons/bs';
 import { DataItem, FileItem } from '@type/types';
 import { StyledSection, StyledHeader, StyledColumntitle,
@@ -19,6 +19,9 @@ const DetailScreen = () => {
   const navigate = useNavigate();
   const fileData: FileItem[] = filteredData[0]?.files || [];
 
+  //check whether the date is expired 
+  const checkExpiration = expirationTime(filteredData[0].expires_at) === 'Expired' ? true : false;
+
   useEffect(() => {
     //Rediret to main page if there is no data for the given ID
     if (filteredData.length ===0) navigate('/');
@@ -34,7 +37,7 @@ const DetailScreen = () => {
         <StyledSubSection2>
           <StyledSubSection2_1>
         <MainHeader>{filteredData[0]?.sent.subject}</MainHeader>
-        <UnderLineText>{filteredData[0].key}</UnderLineText>
+        <UnderLineText>localhost/{filteredData[0].key}</UnderLineText>
         </StyledSubSection2_1>
         <StyledSubSection2_btn onClick={() => alert('downloaded')}> <BsDownload/> Downlodad</StyledSubSection2_btn>
         </StyledSubSection2>
@@ -70,7 +73,7 @@ const DetailScreen = () => {
           <img style={{width: '10%', height: '10%', paddingRight:'15px'}} src={fileData[0]?.thumbnailUrl} />
           <div>{fileData[0]?.name}</div>
           </StyledSubSection5_1>
-          <StyledColumntitle>{convertFileSize(fileData[0]?.size)}</StyledColumntitle>
+          <StyledColumntitle>{checkExpiration ? <div>Expired</div> :  convertFileSize(fileData[0]?.size)}</StyledColumntitle>
         </StyledSubSection5>
       </StyledSubSection>
     </StyledSection>
