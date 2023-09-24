@@ -1,27 +1,51 @@
-# React + TypeScript + Vite
+# File Sharing
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+-   Vite + React + Typescript
+-   Tech stack: react with typescript, zustand, styled-component, react table
+-   There are 2 pages : main page and detail page
+-   Main page : fetches api data and displays table content. When key value is clicked, it navigates to the detail page
+-   Detail page : it displays specific details based on selected item. it redirects to the main page if there is an item that has not been provided
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
 
-## Expanding the ESLint configuration
+-   [Prerequisites](#prerequisites)
+-   [Sample](#sample)
+-   [Installation](#installation)
+-   [Usage](#usage)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+## Prerequisites[](#prerequisites)
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+Before you begin, ensure you have met the following requirements:
+
+-   Node.js and npm(or yarn) installed on your development machine.
+
+---
+
+## Sample[](#sample)
+
+-   ![Sample](https://drive.google.com/uc?export=view&id=1In1nEfUs5-hUDpzkSlZEWoIzFGWdby8V)
+
+-   ![Sample](https://drive.google.com/uc?export=view&id=1x6eVoUqQPnuGTIVjcGnISmKaTEczyowU)
+
+## Installation[](#installation)
+
+1. clone this proejct
+2. navigate to the project directory
+3. install the required dependencies:
+
+```
+yarn (npm install)
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+## Usage[](#usage)
+
+to run this project on your development,
+
+```
+yarn dev (npm run dev)
+go to http://localhost:5173/ (default port : 5173)
+```
