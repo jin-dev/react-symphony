@@ -1,22 +1,22 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import tsconfigPaths from 'vite-tsconfig-paths'
-import { resolve } from 'path'
+import { defineConfig } from 'vite';
+import react from '@vitejs/plugin-react';
+import tsconfigPaths from 'vite-tsconfig-paths';
+import { resolve } from 'path';
 
 export default defineConfig({
     resolve: {
         alias: [
-          { find: '@src', replacement: resolve(__dirname, 'src') },
-          {
-            find: '@components',
-            replacement: resolve(__dirname, 'src/components'),
-          },
-          {
-            find: '@type',
-            replacement: resolve(__dirname, 'src/type'),
-          },
+            { find: '@src', replacement: resolve(__dirname, 'src') },
+            {
+                find: '@components',
+                replacement: resolve(__dirname, 'src/components'),
+            },
+            {
+                find: '@type',
+                replacement: resolve(__dirname, 'src/type'),
+            },
         ],
-      },
+    },
     server: {
         proxy: {
             '/api': {
@@ -28,4 +28,4 @@ export default defineConfig({
         },
     },
     plugins: [react(), tsconfigPaths()],
-})
+});

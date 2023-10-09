@@ -22,6 +22,7 @@ module.exports = {
         '@typescript-eslint/explicit-module-boundary-types': 'warn',
         '@typescript-eslint/no-explicit-any': 'warn',
         'react/react-in-jsx-scope': 'off',
-        'react/jsx-filename-extension': ['error', { extensions: ['.tsx', '.jsx'] }],
+        'react/jsx-filename-extension': ['warn', { extensions: ['.tsx', '.jsx'] }],
+        'import/no-unresolved': 'off',
     },
-}
+};

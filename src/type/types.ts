@@ -5,26 +5,26 @@ interface FilteredItems {
     size: string;
     expires_at: string;
     recipients: number;
-  }
-  interface JsonData {
+}
+interface JsonData {
     sent: {
-      subject: string;
-      emails?: string[];
+        subject: string;
+        emails?: string[];
     };
     key: string;
     count: number;
     size: number;
     expires_at: number;
-  }
+}
 
-  interface TableObject {
-    count: number
-    expires_at: string
-    key: string
-    size: string
-    subject: string
-    recipients : number
-  }
+interface TableObject {
+    count: number;
+    expires_at: string;
+    key: string;
+    size: string;
+    subject: string;
+    recipients: number;
+}
 
 interface Sent {
     subject: string;
@@ -49,6 +49,6 @@ interface FileItem {
     name: string;
     size: number;
     thumbnailUrl: string;
-  }
-  
-  export { FilteredItems, JsonData, TableObject, DataItem, FileItem };
+}
+
+export { FilteredItems, JsonData, TableObject, DataItem, FileItem };
