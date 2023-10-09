@@ -16,7 +16,6 @@ const size: Size = {
     xxl: '1920px', // for big screens
 };
 
-// eslint-disable-next-line import/prefer-default-export
 export const device = {
     xs: `(max-width: ${size.xs})`,
     sm: `(max-width: ${size.sm})`,

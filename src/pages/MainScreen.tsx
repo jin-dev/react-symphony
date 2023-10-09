@@ -131,7 +131,7 @@ function MainScreen(): React.JSX.Element {
     return (
         <StyledSection>
             <StyledHeader>
-                <Title>HAHA test</Title>
+                <Title>Part. I</Title>
             </StyledHeader>
             <StyledSubSection>
                 <StyledPart2>

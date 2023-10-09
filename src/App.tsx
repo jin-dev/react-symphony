@@ -1,11 +1,11 @@
 import React from 'react';
 import { ThemeProvider } from 'styled-components';
+import { Route, Routes } from 'react-router-dom';
+import MainScreen from '@src/pages/MainScreen';
+import DetailScreen from '@src/pages/DetailScreen.tsx';
 import { theme } from './components/styles/theme.ts';
 import GlobalStyle from './components/styles/GlobalStyles.tsx';
 import './App.css';
-import { Route, Routes } from 'react-router-dom';
-import MainScreen from './pages/MainScreen';
-import DetailScreen from './pages/DetailScreen';
 
 function App(): React.JSX.Element {
     return (
