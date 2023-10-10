@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import { useStore } from '@components/zustand/jsonStore';
 import { CustomizedTable } from '@components/CustomizedTable';
 import { convertFileSize, expirationTime } from '@components/utility/calculator';
 import { FilteredItems, JsonData } from '@type/types';
-import styled from 'styled-components';
 import { device } from '@src/components/styles/BreakPoints';
 
 export const StyledSection = styled.section`

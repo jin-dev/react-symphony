@@ -5,6 +5,7 @@ import { useStore } from '@components/zustand/jsonStore';
 import { convertFileSize, expirationTime } from '@components/utility/calculator';
 import { BsDownload } from 'react-icons/bs';
 import { DataItem, FileItem } from '@type/types';
+import { device } from '@src/components/styles/BreakPoints';
 
 export const StyledSection = styled.section`
     width: 100%;
@@ -13,7 +14,7 @@ export const StyledSection = styled.section`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    @media (min-width: 768px) {
+    @media ${device.lg} {
         margin: 50px;
     }
 `;
