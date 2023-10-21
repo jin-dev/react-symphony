@@ -139,19 +139,21 @@ export const StyledSubSection = styled.section`
 function DetailScreen() {
     const { id } = useParams();
     const jsonData = useStore((state) => state.data);
+    const navigate = useNavigate();
 
     // Filter data based on the 'id' parameter from URL
     const filteredData: DataItem[] = jsonData.filter((item) => item.key === id);
-    const navigate = useNavigate();
     const fileData: FileItem[] = filteredData[0]?.files || [];
 
-    // check whether the date is expired
-    const checkExpiration = expirationTime(filteredData[0].expires_at) === 'Expired';
-
+    // redirection for expectional one
     useEffect(() => {
-        // Rediret to main page if there is no data for the given ID
-        if (filteredData.length === 0) navigate('/');
-    }, []);
+        if (filteredData.length === 0) {
+            navigate('/');
+        }
+    });
+    // check whether the date is expired
+    const checkExpiration =
+        filteredData.length > 0 ? expirationTime(filteredData[0].expires_at) === 'Expired' : null;
 
     // Render the detail page if there is filtered data, otherwise it renders nothing.
     return filteredData.length > 0 ? (

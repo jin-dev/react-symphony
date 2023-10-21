@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { useStore } from '@components/zustand/jsonStore';
 import { CustomizedTable } from '@components/CustomizedTable';
-import { convertFileSize, expirationTime } from '@components/utility/calculator';
-import { FilteredItems, JsonData } from '@type/types';
 import { device } from '@src/components/styles/BreakPoints';
+import { useQuery } from 'react-query';
 
 export const StyledSection = styled.section`
     margin: 50px;
@@ -88,45 +87,51 @@ const Title = styled.h1`
     }
 `;
 
+// get API data
+const fetchLinkData = async () => {
+    const response = await fetch('/api/links.json');
+    if (!response.ok) {
+        throw new Error('There is an error');
+    }
+    const data = await response.json();
+
+    // Map and convert the received data for display
+    /* const filteredArray: FilteredItems[] = data.map((item: JsonData) => ({
+        subject: item.sent.subject,
+        key: item.key,
+        count: item.count,
+        size: convertFileSize(item.size),
+        expires_at: expirationTime(item.expires_at),
+        recipients: item.sent?.emails?.length || 0,
+    }));
+*/
+    // Set the filtered Data
+    // setFiltered(filteredArray);
+    return data;
+};
+
 function MainScreen(): React.JSX.Element {
     // Zustand 'useStore' hook to set data
+    // const setData = useStore((state) => state.setData);
+    // const [filtered, setFiltered] = useState<FilteredItems[]>([]);
+
+    const { data, isLoading, isError } = useQuery('linkData', fetchLinkData);
+
     const setData = useStore((state) => state.setData);
-    const [filtered, setFiltered] = useState<FilteredItems[]>([]);
+    // set data for global state management
 
-    // get API data
-    async function fetchData(): Promise<void> {
-        try {
-            const response = await fetch('/api/links.json');
-            if (!response.ok) {
-                throw new Error('There is an error');
-            }
-            const data = await response.json();
-
-            // set data for global state management
-            setData(data);
-
-            // Map and convert the received data for display
-            const filteredArray: FilteredItems[] = data.map((item: JsonData) => ({
-                subject: item.sent.subject,
-                key: item.key,
-                count: item.count,
-                size: convertFileSize(item.size),
-                expires_at: expirationTime(item.expires_at),
-                recipients: item.sent?.emails?.length || 0,
-            }));
-
-            // Set the filtered Data
-            setFiltered(filteredArray);
-        } catch (e) {
-            console.error('An error occurred:', e); // Changed: Added a more informative error message
-        }
+    if (data !== undefined) {
+        setData(data);
     }
 
+    if (isLoading) {
+        return <div> Loading..</div>;
+    }
+    if (isError) {
+        return <div> There is an error</div>;
+    }
     // Fetch data when the component mounts
-    useEffect(() => {
-        fetchData();
-    }, []);
-
+    // console.log("The data : ", filtered);
     // renders received data with table component
     return (
         <StyledSection>
@@ -136,7 +141,7 @@ function MainScreen(): React.JSX.Element {
             <StyledSubSection>
                 <StyledPart2>
                     <StyledSubTitle>My Links</StyledSubTitle>
-                    <CustomizedTable tableData={filtered} />
+                    <CustomizedTable tableData={data} />
                 </StyledPart2>
             </StyledSubSection>
         </StyledSection>
